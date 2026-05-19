@@ -932,21 +932,21 @@
         </div>
       </div>
     </div>
-<form class="contact-form" action="https://formspree.io/f/mwvzpgeq" method="POST" id="contact-form">
+    <form class="contact-form" action="https://formspree.io/f/mwvzpgeq" method="POST" id="contact-form">
       <div class="form-row">
         <div class="form-group">
           <label>
             <span class="en-inline">Name</span>
             <span class="ko-inline">이름</span>
           </label>
-          <input type="text" id="ph-name">
+          <input type="text" id="ph-name" name="name">
         </div>
         <div class="form-group">
           <label>
             <span class="en-inline">Company</span>
             <span class="ko-inline">회사명</span>
           </label>
-          <input type="text" id="ph-company">
+          <input type="text" id="ph-company" name="company">
         </div>
       </div>
       <div class="form-group">
@@ -954,20 +954,24 @@
           <span class="en-inline">Email</span>
           <span class="ko-inline">이메일</span>
         </label>
-        <input type="email" id="ph-email">
+        <input type="email" id="ph-email" name="email">
       </div>
       <div class="form-group">
         <label>
           <span class="en-inline">Message</span>
           <span class="ko-inline">문의 내용</span>
         </label>
-        <textarea rows="5" id="ph-message"></textarea>
+        <textarea rows="5" id="ph-message" name="message"></textarea>
       </div>
       <button type="submit" class="form-submit">
         <span class="en-inline">Send message</span>
         <span class="ko-inline">메시지 보내기</span>
       </button>
     </form>
+    <div id="form-success" style="display:none; margin-top: 1rem; padding: 1rem 1.25rem; background: rgba(45,90,78,0.08); border-radius: 8px; color: var(--accent); font-size: 0.9rem;">
+      <span class="en-inline">✓ Message sent. We'll be in touch soon.</span>
+      <span class="ko-inline">✓ 메시지가 전송되었습니다. 곧 연락드리겠습니다.</span>
+    </div>
   </div>
 </section>
 
@@ -1015,6 +1019,25 @@
 
     localStorage.setItem('ami-lang', lang);
   }
+
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = Object.fromEntries(new FormData(form).entries());
+    fetch(form.action, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if (res.ok) {
+        form.reset();
+        document.getElementById('form-success').style.display = 'block';
+      }
+    });
+  });
 
   const saved = localStorage.getItem('ami-lang') || 'en';
   setLang(saved);

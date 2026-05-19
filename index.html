@@ -93,12 +93,15 @@
   }
 
   .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--ink);
     text-decoration: none;
-    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+  }
+  .nav-logo svg {
+    height: 28px;
+    width: auto;
+    display: block;
+    color: #000000;
   }
 
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -309,9 +312,26 @@
     font-size: 2.5rem; color: var(--ink-faint);
     font-weight: 600;
   }
-  .team-info { padding: 1.25rem; }
-  .team-name { font-weight: 500; font-size: 0.95rem; margin-bottom: 2px; }
-  .team-role { font-size: 0.8rem; color: var(--ink-muted); }
+  .team-info { padding: 1.5rem; }
+  .team-name { font-weight: 500; font-size: 0.95rem; margin-bottom: 3px; }
+  .team-role { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+  .team-bio {
+    font-size: 0.825rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .team-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .team-tag {
+    font-size: 0.7rem; font-weight: 500;
+    padding: 3px 9px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.02em;
+  }
 
   /* CONTACT */
   .contact-wrap {
@@ -358,6 +378,144 @@
   }
   .form-submit:hover { opacity: 0.85; }
 
+  /* CASE STUDIES */
+  .cases { background: var(--bg); }
+  .case-card {
+    margin-top: 3rem;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .case-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 2rem;
+    padding: 2.5rem 3rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .case-tag {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(45,90,78,0.08);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 0.75rem;
+  }
+  .case-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .case-client {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+  }
+  .case-meta {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .case-meta-item {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+  }
+  .case-meta-item span {
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+  .case-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .case-col {
+    padding: 2rem 2.5rem;
+    border-right: 1px solid var(--rule);
+  }
+  .case-col:last-child { border-right: none; }
+  .case-col-label {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+  .case-col ul {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .case-col ul li {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .case-col ul li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--ink-faint);
+    font-size: 0.75rem;
+  }
+  .case-outcomes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--rule);
+  }
+  .outcome-item {
+    padding: 1.5rem 2.5rem;
+    border-right: 1px solid var(--rule);
+  }
+  .outcome-item:last-child { border-right: none; }
+  .outcome-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .outcome-label {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+  }
+  .case-tech {
+    padding: 1.25rem 2.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .tech-label {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-right: 0.25rem;
+  }
+  .tech-tag {
+    font-size: 0.75rem; font-weight: 500;
+    padding: 3px 10px;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 900px) {
+    .case-header { grid-template-columns: 1fr; }
+    .case-meta { text-align: left; flex-direction: row; flex-wrap: wrap; gap: 1rem; }
+    .case-body { grid-template-columns: 1fr; }
+    .case-col { border-right: none; border-bottom: 1px solid var(--rule); }
+    .case-col:last-child { border-bottom: none; }
+    .case-outcomes { grid-template-columns: 1fr 1fr; }
+    .outcome-item:nth-child(2) { border-right: none; }
+    .outcome-item:nth-child(3) { border-top: 1px solid var(--rule); border-right: none; grid-column: span 2; }
+  }
+
   /* FOOTER */
   footer {
     padding: 2.5rem 4rem;
@@ -388,10 +546,19 @@
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">AMI SYSTEMS</a>
+  <a href="#" class="nav-logo">
+    <svg viewBox="243.39 233.43 329.7 123.13" xmlns="http://www.w3.org/2000/svg">
+      <g fill="currentColor">
+        <path d="M569.49,234.09l-10,0.01l-9.36-0.01c-2.18,0-3.61,1.52-3.61,3.8l0.01,118.76c0,1.75,2.2,2.91,3.5,2.91l9.45,0l10.09,0c1.31,0,3.5-1.16,3.5-2.91l0.01-118.76C573.09,235.61,571.67,234.09,569.49,234.09z"/>
+        <path d="M525.76,237.23c0-2.28-1.43-3.8-3.61-3.8l-8.58,0.01l-9.37-0.01c-0.3,0-0.59,0.04-0.86,0.09l-30.81-0.08c-1.69,0-6.47,0.01-7.48,0.01l-20.06-0.02c-0.3,0-0.58,0.03-0.85,0.09l-5.08-0.07c-1.69,0-3.52,1.15-4.91,1.95l-21.58,9.96c-0.99,0.57-2.55-1.27-2.55-2.22l-0.03-6.96c0-0.98-1.64-2.72-2.65-2.72l-20.38-0.02c-2.18,0-3.61,1.52-3.61,3.8l0.01,118.76c0,1.75,2.2,2.91,3.5,2.91l19.53,0c1.74,0,3.6-1.35,3.6-3.32l0.01-92.6c0-1.07,1.33-2.83,2.32-2.83l25.57-0.03c1.93,0,3.31,1.19,3.31,3.31l0.01,92.07c0,2.06,1.79,3.41,3.57,3.41h0.06c0.02,0,0.04,0.01,0.06,0.01l6,0l12.98,0c0.02,0,0.03-0.01,0.05-0.01h0.18c1.74,0,3.6-1.35,3.6-3.32l0.01-92.6c0-1.07,1.33-2.83,2.32-2.83l25.83-0.03c1.93,0,3.31,1.19,3.31,3.31l0.01,92.07c0,2.06,1.79,3.41,3.57,3.41l1.3,0c0.02,0,0.04,0.01,0.05,0.01l8.35,0l9.79,0c0.03,0,0.06-0.01,0.09-0.01c0.18-0.01,0.37-0.04,0.57-0.08c1.25-0.22,2.43-1.01,2.84-2.28l-0.01-18.11L525.76,237.23z"/>
+        <path d="M362.36,293.49c-0.01-1.77-0.91-3.95-2.14-5.24c-16.5-17.43-33.15-34.72-49.72-52.08c-1.89-1.98-4.02-2.75-6.72-2.74c-18.89,0.07-37.78,0.05-56.67,0.06c-3.14,0-3.59,0.42-3.59,3.48c-0.01,7.32,0.01,14.64,0,21.96c0,3.82,0.29,4.13,4.16,4.13c27-0.01,53.99-0.03,80.99-0.05c4.17,0,6.04,1.85,6.03,6.03c-0.01,8.34-0.02,16.68-0.04,25.03c-0.01,3.16-0.32,3.47-3.56,3.47c-14.01,0.01-28.02,0-42.03,0c0,0.01,0,0.03,0,0.04c-14.09,0-28.18,0-42.26,0c-2.09,0-2.87,0.23-3.15,1.43c-0.11,0.46-0.15,1.05-0.15,1.84c0,5.12-0.31,10.26,0.11,15.34c0.03,0.38,0.03,0.73,0.04,1.09v0.81v11.46c0.01-0.01,0.02-0.02,0.03-0.03c-0.01,8.61-0.02,17.22-0.03,25.83c0,2.04,0.88,2.8,2.85,2.79c7.48-0.05,14.95-0.05,22.43-0.01c2.07,0.01,2.74-0.92,2.72-2.89c-0.07-7.79-0.05-15.58-0.06-23.37c-0.01-3.98,1.07-5.11,4.95-5.12c2.42,0,4.83,0,7.25-0.01v-0.03c15.27,0.01,30.54,0.02,45.81,0.03c3.89,0,4.96,1.13,4.95,5.12c-0.01,7.79,0.01,15.58-0.06,23.37c-0.02,1.97,0.65,2.9,2.72,2.89c7.48-0.05,14.95-0.04,22.43,0.01c1.98,0.01,2.86-0.76,2.85-2.79C362.46,334.73,362.52,314.11,362.36,293.49z"/>
+      </g>
+    </svg>
+  </a>
   <ul class="nav-links">
     <li><a href="#about"><span class="en-inline">About</span><span class="ko-inline">소개</span></a></li>
     <li><a href="#services"><span class="en-inline">Services</span><span class="ko-inline">서비스</span></a></li>
+    <li><a href="#work"><span class="en-inline">Work</span><span class="ko-inline">사례</span></a></li>
     <li><a href="#team"><span class="en-inline">Team</span><span class="ko-inline">팀</span></a></li>
     <li><a href="#contact"><span class="en-inline">Contact</span><span class="ko-inline">문의</span></a></li>
   </ul>
@@ -559,6 +726,8 @@
     <h2 class="en" style="color: #fff;">The team<br>behind the work.</h2>
     <h2 class="ko" style="color: #fff;">AMI를 만드는<br>사람들.</h2>
     <div class="team-grid">
+
+      <!-- David -->
       <div class="team-card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
         <div class="team-photo" style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2);">DL</div>
         <div class="team-info">
@@ -566,22 +735,155 @@
             <span class="en-inline">David Hoyool Lee</span>
             <span class="ko-inline">이호율</span>
           </div>
-          <div class="team-role" style="color: rgba(255,255,255,0.45);">CBO</div>
+          <div class="team-role">CBO — Chief Business Officer</div>
+          <div class="team-bio en">Business strategist and AI pipeline architect. Leads business development, partnership strategy, and the commercial direction of AMI SYSTEMS. M.B.A. in Business &amp; Marketing.</div>
+          <div class="team-bio ko">비즈니스 전략가 및 AI 파이프라인 아키텍트. 사업 개발, 파트너십 전략, AMI SYSTEMS의 비즈니스 방향성을 총괄합니다. 경영학 석사 (비즈니스 / 마케팅 전공).</div>
+          <div class="team-tags">
+            <span class="team-tag">Business Strategy</span>
+            <span class="team-tag">AI Pipeline</span>
+            <span class="team-tag">M.B.A.</span>
+            <span class="team-tag">Biz Dev</span>
+          </div>
         </div>
       </div>
+
+      <!-- Heejae -->
       <div class="team-card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
         <div class="team-photo" style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2);">HC</div>
         <div class="team-info">
           <div class="team-name" style="color: #fff;">
             <span class="en-inline">Heejae Cho</span>
-            <span class="ko-inline">조희재</span>
+            <span class="ko-inline">조희제</span>
           </div>
-          <div class="team-role" style="color: rgba(255,255,255,0.45);">CTO</div>
+          <div class="team-role">CTO — Chief Technology Officer</div>
+          <div class="team-bio en">Backend architect with 9+ years building large-scale systems. Expert in high-traffic infrastructure and Apex API architectures that handle real production load.</div>
+          <div class="team-bio ko">9년 이상의 대규모 시스템 구축 경험을 보유한 백엔드 아키텍트. 대용량 트래픽 인프라 및 실제 프로덕션 환경을 견디는 Apex API 아키텍처 전문가.</div>
+          <div class="team-tags">
+            <span class="team-tag">Backend</span>
+            <span class="team-tag">9+ yrs</span>
+            <span class="team-tag">API Architecture</span>
+            <span class="team-tag">Infrastructure</span>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
+
+<hr class="rule-line">
+
+<!-- CASE STUDIES -->
+<section class="cases" id="work">
+  <div class="section-label">
+    <span class="en-inline">Our work</span>
+    <span class="ko-inline">구축 사례</span>
+  </div>
+  <h2 class="en">Systems we've<br>built in the field.</h2>
+  <h2 class="ko">현장에서 실제로<br>구축한 시스템.</h2>
+
+  <!-- CASE 01 -->
+  <div class="case-card">
+    <div class="case-header">
+      <div>
+        <div class="case-tag">
+          <span class="en-inline">ERP / Operations</span>
+          <span class="ko-inline">ERP / 운영 관리</span>
+        </div>
+        <div class="case-title en">Laundry Franchise<br>Integrated Management System</div>
+        <div class="case-title ko">세탁소 프랜차이즈<br>통합 관리 시스템</div>
+        <div class="case-client en">Domestic laundry franchise chain — branch, customer & equipment data platform</div>
+        <div class="case-client ko">국내 세탁 프랜차이즈 — 지점·고객·기기 데이터 통합 플랫폼</div>
+      </div>
+      <div class="case-meta">
+        <div class="case-meta-item"><span class="en-inline">Timeline</span><span class="ko-inline">기간</span> &nbsp;<span><span class="en-inline">6 months</span><span class="ko-inline">6개월</span></span></div>
+        <div class="case-meta-item"><span class="en-inline">Status</span><span class="ko-inline">상태</span> &nbsp;<span><span class="en-inline">In development</span><span class="ko-inline">개발 진행 중</span></span></div>
+        <div class="case-meta-item"><span class="en-inline">Year</span><span class="ko-inline">연도</span> &nbsp;<span>2026</span></div>
+      </div>
+    </div>
+
+    <div class="case-body">
+      <div class="case-col">
+        <div class="case-col-label"><span class="en-inline">Problem</span><span class="ko-inline">문제</span></div>
+        <ul class="en">
+          <li>Branch, customer, and equipment data scattered across disconnected systems</li>
+          <li>No unified view of issues by location or machine</li>
+          <li>Manual reporting with no dashboard or analytics</li>
+          <li>No access control — all staff saw all data</li>
+        </ul>
+        <ul class="ko">
+          <li>지점·고객·기기 데이터가 분산된 시스템에서 개별 관리</li>
+          <li>지점별·기기별 이슈 현황을 한눈에 파악할 수 없음</li>
+          <li>대시보드나 분석 없이 수동 보고서 작성</li>
+          <li>접근 권한 체계 부재 — 모든 직원이 전체 데이터 열람 가능</li>
+        </ul>
+      </div>
+      <div class="case-col">
+        <div class="case-col-label"><span class="en-inline">What we built</span><span class="ko-inline">구축 내용</span></div>
+        <ul class="en">
+          <li>Single platform integrating branch, customer, contractor & equipment records</li>
+          <li>Issue tracking per branch and machine with full history</li>
+          <li>Dashboard with live KPIs and automated report generation</li>
+          <li>Role-based access control (RBAC) with audit logging</li>
+          <li>File attachment system for contracts and images</li>
+        </ul>
+        <ul class="ko">
+          <li>지점·고객·사업자·기기 정보를 통합하는 단일 플랫폼 구축</li>
+          <li>지점 및 기기별 이슈 이력 관리 기능</li>
+          <li>주요 지표 실시간 대시보드 및 보고서 자동 생성</li>
+          <li>역할 기반 접근 제어(RBAC) 및 감사 로그</li>
+          <li>계약서·이미지 파일 첨부 및 조회 시스템</li>
+        </ul>
+      </div>
+      <div class="case-col">
+        <div class="case-col-label"><span class="en-inline">Approach</span><span class="ko-inline">접근 방식</span></div>
+        <ul class="en">
+          <li>Requirements analysis and data schema design before any code</li>
+          <li>Phased delivery: design → core build → QA → deployment</li>
+          <li>Mid-point review with client for screen design sign-off</li>
+          <li>Staff training and operational handover documentation</li>
+        </ul>
+        <ul class="ko">
+          <li>개발 착수 전 요구사항 분석 및 데이터 스키마 설계</li>
+          <li>단계별 납품: 설계 → 핵심 개발 → QA → 전개</li>
+          <li>화면 설계 결과물 기준 중간 검토 및 피드백 반영</li>
+          <li>직원 교육 및 운영 이관 문서 제공</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="case-outcomes">
+      <div class="outcome-item">
+        <div class="outcome-num">100%</div>
+        <div class="outcome-label en">Data reliability target</div>
+        <div class="outcome-label ko">데이터 신뢰성 목표</div>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-num">30%+</div>
+        <div class="outcome-label en">Projected efficiency gain</div>
+        <div class="outcome-label ko">업무 처리 효율 향상 목표</div>
+      </div>
+      <div class="outcome-item">
+        <div class="outcome-num">6mo</div>
+        <div class="outcome-label en">Full delivery timeline</div>
+        <div class="outcome-label ko">전체 납품 기간</div>
+      </div>
+    </div>
+
+    <div class="case-tech">
+      <span class="tech-label">Stack</span>
+      <span class="tech-tag">Python</span>
+      <span class="tech-tag">Django</span>
+      <span class="tech-tag">PostgreSQL</span>
+      <span class="tech-tag">Redis</span>
+      <span class="tech-tag">Celery</span>
+      <span class="tech-tag">Nginx</span>
+      <span class="tech-tag">Linux</span>
+    </div>
+  </div>
+</section>
+
+<hr class="rule-line">
 
 <!-- CONTACT -->
 <section id="contact">
@@ -662,7 +964,15 @@
 </section>
 
 <footer>
-  <div class="footer-logo">AMI SYSTEMS</div>
+  <div class="footer-logo">
+    <svg viewBox="243.39 233.43 329.7 123.13" xmlns="http://www.w3.org/2000/svg" style="height:20px; width:auto; color:#000000; opacity:0.5;">
+      <g fill="currentColor">
+        <path d="M569.49,234.09l-10,0.01l-9.36-0.01c-2.18,0-3.61,1.52-3.61,3.8l0.01,118.76c0,1.75,2.2,2.91,3.5,2.91l9.45,0l10.09,0c1.31,0,3.5-1.16,3.5-2.91l0.01-118.76C573.09,235.61,571.67,234.09,569.49,234.09z"/>
+        <path d="M525.76,237.23c0-2.28-1.43-3.8-3.61-3.8l-8.58,0.01l-9.37-0.01c-0.3,0-0.59,0.04-0.86,0.09l-30.81-0.08c-1.69,0-6.47,0.01-7.48,0.01l-20.06-0.02c-0.3,0-0.58,0.03-0.85,0.09l-5.08-0.07c-1.69,0-3.52,1.15-4.91,1.95l-21.58,9.96c-0.99,0.57-2.55-1.27-2.55-2.22l-0.03-6.96c0-0.98-1.64-2.72-2.65-2.72l-20.38-0.02c-2.18,0-3.61,1.52-3.61,3.8l0.01,118.76c0,1.75,2.2,2.91,3.5,2.91l19.53,0c1.74,0,3.6-1.35,3.6-3.32l0.01-92.6c0-1.07,1.33-2.83,2.32-2.83l25.57-0.03c1.93,0,3.31,1.19,3.31,3.31l0.01,92.07c0,2.06,1.79,3.41,3.57,3.41h0.06c0.02,0,0.04,0.01,0.06,0.01l6,0l12.98,0c0.02,0,0.03-0.01,0.05-0.01h0.18c1.74,0,3.6-1.35,3.6-3.32l0.01-92.6c0-1.07,1.33-2.83,2.32-2.83l25.83-0.03c1.93,0,3.31,1.19,3.31,3.31l0.01,92.07c0,2.06,1.79,3.41,3.57,3.41l1.3,0c0.02,0,0.04,0.01,0.05,0.01l8.35,0l9.79,0c0.03,0,0.06-0.01,0.09-0.01c0.18-0.01,0.37-0.04,0.57-0.08c1.25-0.22,2.43-1.01,2.84-2.28l-0.01-18.11L525.76,237.23z"/>
+        <path d="M362.36,293.49c-0.01-1.77-0.91-3.95-2.14-5.24c-16.5-17.43-33.15-34.72-49.72-52.08c-1.89-1.98-4.02-2.75-6.72-2.74c-18.89,0.07-37.78,0.05-56.67,0.06c-3.14,0-3.59,0.42-3.59,3.48c-0.01,7.32,0.01,14.64,0,21.96c0,3.82,0.29,4.13,4.16,4.13c27-0.01,53.99-0.03,80.99-0.05c4.17,0,6.04,1.85,6.03,6.03c-0.01,8.34-0.02,16.68-0.04,25.03c-0.01,3.16-0.32,3.47-3.56,3.47c-14.01,0.01-28.02,0-42.03,0c0,0.01,0,0.03,0,0.04c-14.09,0-28.18,0-42.26,0c-2.09,0-2.87,0.23-3.15,1.43c-0.11,0.46-0.15,1.05-0.15,1.84c0,5.12-0.31,10.26,0.11,15.34c0.03,0.38,0.03,0.73,0.04,1.09v0.81v11.46c0.01-0.01,0.02-0.02,0.03-0.03c-0.01,8.61-0.02,17.22-0.03,25.83c0,2.04,0.88,2.8,2.85,2.79c7.48-0.05,14.95-0.05,22.43-0.01c2.07,0.01,2.74-0.92,2.72-2.89c-0.07-7.79-0.05-15.58-0.06-23.37c-0.01-3.98,1.07-5.11,4.95-5.12c2.42,0,4.83,0,7.25-0.01v-0.03c15.27,0.01,30.54,0.02,45.81,0.03c3.89,0,4.96,1.13,4.95,5.12c-0.01,7.79,0.01,15.58-0.06,23.37c-0.02,1.97,0.65,2.9,2.72,2.89c7.48-0.05,14.95-0.04,22.43,0.01c1.98,0.01,2.86-0.76,2.85-2.79C362.46,334.73,362.52,314.11,362.36,293.49z"/>
+      </g>
+    </svg>
+  </div>
   <div class="footer-text">
     <span class="en-inline">© 2026 AMI SYSTEMS. All rights reserved.</span>
     <span class="ko-inline">© 2026 AMI SYSTEMS. 모든 권리 보유.</span>

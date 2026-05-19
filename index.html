@@ -100,13 +100,24 @@
   .nav-logo {
     text-decoration: none;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    gap: 8px;
   }
   .nav-logo svg {
     height: 28px;
     width: auto;
     display: block;
     color: #000000;
+  }
+  .nav-logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1;
+    padding-bottom: 0px;
   }
 
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -560,6 +571,7 @@
         <path d="M362.36,293.49c-0.01-1.77-0.91-3.95-2.14-5.24c-16.5-17.43-33.15-34.72-49.72-52.08c-1.89-1.98-4.02-2.75-6.72-2.74c-18.89,0.07-37.78,0.05-56.67,0.06c-3.14,0-3.59,0.42-3.59,3.48c-0.01,7.32,0.01,14.64,0,21.96c0,3.82,0.29,4.13,4.16,4.13c27-0.01,53.99-0.03,80.99-0.05c4.17,0,6.04,1.85,6.03,6.03c-0.01,8.34-0.02,16.68-0.04,25.03c-0.01,3.16-0.32,3.47-3.56,3.47c-14.01,0.01-28.02,0-42.03,0c0,0.01,0,0.03,0,0.04c-14.09,0-28.18,0-42.26,0c-2.09,0-2.87,0.23-3.15,1.43c-0.11,0.46-0.15,1.05-0.15,1.84c0,5.12-0.31,10.26,0.11,15.34c0.03,0.38,0.03,0.73,0.04,1.09v0.81v11.46c0.01-0.01,0.02-0.02,0.03-0.03c-0.01,8.61-0.02,17.22-0.03,25.83c0,2.04,0.88,2.8,2.85,2.79c7.48-0.05,14.95-0.05,22.43-0.01c2.07,0.01,2.74-0.92,2.72-2.89c-0.07-7.79-0.05-15.58-0.06-23.37c-0.01-3.98,1.07-5.11,4.95-5.12c2.42,0,4.83,0,7.25-0.01v-0.03c15.27,0.01,30.54,0.02,45.81,0.03c3.89,0,4.96,1.13,4.95,5.12c-0.01,7.79,0.01,15.58-0.06,23.37c-0.02,1.97,0.65,2.9,2.72,2.89c7.48-0.05,14.95-0.04,22.43,0.01c1.98,0.01,2.86-0.76,2.85-2.79C362.46,334.73,362.52,314.11,362.36,293.49z"/>
       </g>
     </svg>
+    <span class="nav-logo-text">Systems</span>
   </a>
   <ul class="nav-links">
     <li><a href="#about"><span class="en-inline">About</span><span class="ko-inline">소개</span></a></li>
@@ -908,13 +920,30 @@
       <div class="contact-detail">
         <div class="detail-row">
           <span class="detail-key">
-            <span class="en-inline">HQ</span>
-            <span class="ko-inline">본사</span>
+            <span class="en-inline">Company</span>
+            <span class="ko-inline">상호명</span>
           </span>
           <span class="detail-val">
-            <span class="en-inline">Yongin-si, Gyeonggi-do, Korea</span>
-            <span class="ko-inline">경기도 용인시</span>
+            <span class="en-inline">AMI</span>
+            <span class="ko-inline">에이엠아이</span>
           </span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">
+            <span class="en-inline">Address</span>
+            <span class="ko-inline">주소</span>
+          </span>
+          <span class="detail-val">
+            <span class="en-inline">507, Dongbaekjukjeon-daero, Giheung-gu, Yongin-si, Gyeonggi-do</span>
+            <span class="ko-inline">경기도 용인시 기흥구 동백죽전대로 507, 108-1103</span>
+          </span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">
+            <span class="en-inline">Reg. No.</span>
+            <span class="ko-inline">사업자등록번호</span>
+          </span>
+          <span class="detail-val">114-24-68606</span>
         </div>
         <div class="detail-row">
           <span class="detail-key">

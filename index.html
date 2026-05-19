@@ -143,10 +143,11 @@
 
   .hero-bg {
     position: absolute; inset: 0;
-    background:
-      repeating-linear-gradient(0deg, transparent, transparent 79px, var(--rule) 79px, var(--rule) 80px),
-      repeating-linear-gradient(90deg, transparent, transparent 79px, var(--rule) 79px, var(--rule) 80px);
-    opacity: 0.5;
+  }
+  #particle-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
   }
 
   .hero-inner { position: relative; max-width: 760px; }
@@ -580,7 +581,9 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
+  <div class="hero-bg">
+    <canvas id="particle-canvas"></canvas>
+  </div>
   <div class="hero-inner">
     <div class="hero-eyebrow">
       <span class="en-inline">Established 2026</span>
@@ -1008,5 +1011,98 @@
   setLang(saved);
 </script>
 
+<script>
+  (function() {
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    const COUNT = 80;
+    const MAX_DIST = 140;
+    const MOUSE_DIST = 160;
+    let W, H, particles;
+    let mouse = { x: -999, y: -999 };
+
+    function resize() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+
+    function makeParticle() {
+      return {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        r: Math.random() * 2 + 1.2
+      };
+    }
+
+    function init() {
+      resize();
+      particles = Array.from({ length: COUNT }, makeParticle);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const nodeColor  = 'rgba(45,90,78,VAL)';
+      const lineColor  = 'rgba(45,90,78,VAL)';
+      const accentColor = 'rgba(196,124,62,VAL)';
+
+      for (let i = 0; i < COUNT; i++) {
+        const p = particles[i];
+        for (let j = i + 1; j < COUNT; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x, dy = p.y - q.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < MAX_DIST) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = lineColor.replace('VAL', (1 - d / MAX_DIST) * 0.25);
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+          }
+        }
+        const mdx = p.x - mouse.x, mdy = p.y - mouse.y;
+        const md = Math.sqrt(mdx * mdx + mdy * mdy);
+        const near = md < MOUSE_DIST;
+        if (near) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = accentColor.replace('VAL', (1 - md / MOUSE_DIST) * 0.5);
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, near ? p.r * 2 : p.r, 0, Math.PI * 2);
+        ctx.fillStyle = near
+          ? accentColor.replace('VAL', 0.85)
+          : nodeColor.replace('VAL', 0.5);
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -10) p.x = W + 10;
+        if (p.x > W + 10) p.x = -10;
+        if (p.y < -10) p.y = H + 10;
+        if (p.y > H + 10) p.y = -10;
+      }
+      requestAnimationFrame(draw);
+    }
+
+    canvas.addEventListener('mousemove', function(e) {
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    });
+    canvas.addEventListener('mouseleave', function() {
+      mouse.x = -999; mouse.y = -999;
+    });
+    window.addEventListener('resize', function() { resize(); });
+
+    init();
+    draw();
+  })();
+</script>
 </body>
 </html>

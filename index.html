@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meridian — Corporate Profile</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>AMI SYSTEMS — ERP Systems. Built to Work.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -22,12 +22,65 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
     background: var(--bg);
     color: var(--ink);
     font-size: 16px;
     line-height: 1.7;
   }
+
+  /* LANG TOGGLE */
+  .lang-toggle {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+
+  .lang-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    transition: all 0.2s;
+  }
+
+  .lang-btn .flag { font-size: 1.1rem; line-height: 1; }
+
+  .lang-btn.active {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .lang-btn:hover:not(.active) {
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  /* LANG VISIBILITY */
+  .ko { display: none; }
+  body.lang-ko .en { display: none; }
+  body.lang-ko .ko { display: block; }
+  body.lang-ko .ko-inline { display: inline; }
+  body.lang-ko .en-inline { display: none; }
+  .ko-inline { display: none; }
+  .en-inline { display: inline; }
+
+  /* Korean font overrides */
+  body.lang-ko h1,
+  body.lang-ko h2 {
+    font-family: 'Noto Serif KR', serif;
+    letter-spacing: -0.01em;
+  }
+  body.lang-ko .nav-logo { font-family: 'DM Sans', sans-serif; }
 
   /* NAV */
   nav {
@@ -70,6 +123,11 @@
     transition: opacity 0.2s;
   }
   .nav-cta:hover { opacity: 0.85; }
+
+  .nav-right {
+    display: flex; align-items: center; gap: 0.75rem;
+    flex-shrink: 0;
+  }
 
   /* HERO */
   .hero {
@@ -232,9 +290,10 @@
   /* TEAM */
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 560px;
   }
   .team-card {
     background: var(--bg-card);
@@ -274,7 +333,7 @@
   .form-group label { font-size: 0.8rem; font-weight: 500; color: var(--ink-muted); }
   .form-group input,
   .form-group textarea {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
     font-size: 0.9rem;
     padding: 0.7rem 0.9rem;
     border: 1px solid var(--rule);
@@ -288,7 +347,7 @@
   .form-group input:focus,
   .form-group textarea:focus { border-color: var(--accent); }
   .form-submit {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
     font-size: 0.9rem; font-weight: 500;
     padding: 0.8rem;
     background: var(--accent);
@@ -314,12 +373,13 @@
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
+    .nav-cta { display: none; }
     section { padding: 4rem 1.5rem; }
     .rule-line { margin: 0 1.5rem; }
     .hero { padding: 0 1.5rem; min-height: auto; padding-top: 8rem; padding-bottom: 4rem; }
     .hero-stat { position: static; margin-top: 3rem; justify-content: flex-start; }
     .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-    .services-grid, .team-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
     .form-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem 1.5rem; }
   }
@@ -328,40 +388,68 @@
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">Meridian</a>
+  <a href="#" class="nav-logo">AMI SYSTEMS</a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about"><span class="en-inline">About</span><span class="ko-inline">소개</span></a></li>
+    <li><a href="#services"><span class="en-inline">Services</span><span class="ko-inline">서비스</span></a></li>
+    <li><a href="#team"><span class="en-inline">Team</span><span class="ko-inline">팀</span></a></li>
+    <li><a href="#contact"><span class="en-inline">Contact</span><span class="ko-inline">문의</span></a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get in touch</a>
+  <div class="nav-right">
+    <a href="#contact" class="nav-cta">
+      <span class="en-inline">Get in touch</span>
+      <span class="ko-inline">문의하기</span>
+    </a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">
+        <span class="flag">🇺🇸</span> EN
+      </button>
+      <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">
+        <span class="flag">🇰🇷</span> KO
+      </button>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">Established 2009</div>
-    <h1>Where strategy meets precision.</h1>
-    <p class="hero-sub">Meridian is a global advisory firm helping organizations navigate complexity, build resilient operations, and drive sustainable growth.</p>
+    <div class="hero-eyebrow">
+      <span class="en-inline">Established 2026</span>
+      <span class="ko-inline">2026년 설립</span>
+    </div>
+    <h1 class="en">ERP Systems.<br>Built to Work.</h1>
+    <h1 class="ko">실전형 ERP,<br>우리가 만듭니다.</h1>
+    <p class="hero-sub en">AMI SYSTEMS builds bespoke ERP solutions that cut lag, reduce costs, and expand what your team can do — so you can focus on growing your business.</p>
+    <p class="hero-sub ko">AMI SYSTEMS는 속도 저하를 줄이고, 비용을 절감하며, 팀의 역량을 확장하는 맞춤형 ERP 솔루션을 구축합니다. 비즈니스 성장에만 집중하세요.</p>
     <div class="hero-actions">
-      <a href="#services" class="btn-primary">Explore our work</a>
-      <a href="#about" class="btn-text">Our story</a>
+      <a href="#services" class="btn-primary">
+        <span class="en-inline">What we build</span>
+        <span class="ko-inline">서비스 보기</span>
+      </a>
+      <a href="#about" class="btn-text">
+        <span class="en-inline">Our story</span>
+        <span class="ko-inline">우리 이야기</span>
+      </a>
     </div>
   </div>
   <div class="hero-stat">
     <div class="stat-item">
-      <div class="stat-num">340+</div>
-      <div class="stat-label">Clients served</div>
+      <div class="stat-num">2026</div>
+      <div class="stat-label en">Est.</div>
+      <div class="stat-label ko">설립연도</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">18</div>
-      <div class="stat-label">Countries</div>
+      <div class="stat-num">4</div>
+      <div class="stat-label en">Partners served</div>
+      <div class="stat-label ko">파트너사</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">96%</div>
-      <div class="stat-label">Retention rate</div>
+      <div class="stat-num en-inline" style="display:inline; font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:600; line-height:1; color:var(--ink);">Global</div>
+      <div class="stat-num ko-inline" style="display:none; font-family:'Noto Serif KR',serif; font-size:2.2rem; font-weight:600; line-height:1; color:var(--ink);">글로벌</div>
+      <div class="stat-label en">Capacity</div>
+      <div class="stat-label ko">서비스 범위</div>
     </div>
   </div>
 </section>
@@ -370,26 +458,49 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-label">Our foundation</div>
-  <h2>Built on clarity,<br>driven by impact.</h2>
+  <div class="section-label">
+    <span class="en-inline">Our foundation</span>
+    <span class="ko-inline">우리의 시작</span>
+  </div>
+  <h2 class="en">Built by builders,<br>for builders.</h2>
+  <h2 class="ko">만드는 사람들이<br>만드는 사람들을 위해.</h2>
   <div class="about-grid">
-    <div class="about-body">
-      <p>Founded in Seoul in 2009, Meridian began as a small team of economists and engineers who believed that the best decisions are made when complexity is stripped away—not hidden behind it.</p>
-      <p>Over fifteen years, we have grown into a multi-disciplinary practice spanning strategy, operations, and technology advisory. Our work spans the financial sector, manufacturing, and public institutions across Asia-Pacific and Europe.</p>
-      <p>We don't believe in frameworks for their own sake. We believe in asking better questions and staying with our clients long enough to see the answers matter.</p>
+    <div>
+      <div class="about-body en">
+        <p>AMI SYSTEMS started because we kept running into the same problems — repeated lags, creeping costs, and tools that couldn't keep up with the people using them. We built AMI to solve what we had lived through ourselves.</p>
+        <p>Our mission is simple: speed up operations, make enterprise-grade systems affordable, and expand the resources available to our partners. We believe the right ERP doesn't just manage a business — it frees the people running it.</p>
+        <p>We work closely with every partner from day one, building systems that fit the way their teams actually work — not the other way around.</p>
+      </div>
+      <div class="about-body ko">
+        <p>AMI SYSTEMS는 우리가 직접 겪었던 문제들로부터 시작되었습니다. 반복되는 시스템 지연, 예측하기 어려운 비용 증가, 그리고 사용하는 사람을 따라오지 못하는 도구들. 우리는 그 경험을 바탕으로 AMI를 만들었습니다.</p>
+        <p>우리의 미션은 단순합니다. 운영 속도를 높이고, 엔터프라이즈급 시스템을 합리적인 비용으로 제공하며, 파트너가 활용할 수 있는 자원을 넓히는 것입니다. 올바른 ERP는 비즈니스를 관리하는 도구가 아니라, 그것을 운영하는 사람들을 자유롭게 하는 시스템이라고 믿습니다.</p>
+        <p>우리는 첫날부터 모든 파트너와 긴밀히 협력하며, 팀이 실제로 일하는 방식에 맞는 시스템을 구축합니다. 시스템에 맞춰 일하는 방식을 바꾸는 게 아닙니다.</p>
+      </div>
     </div>
     <div class="values-list">
       <div class="value-item">
-        <div class="value-title">Clarity over convenience</div>
-        <div class="value-desc">We surface the real problem before prescribing solutions. Rigorous diagnosis is non-negotiable.</div>
+        <div class="value-title">
+          <span class="en-inline">Speed without compromise</span>
+          <span class="ko-inline">타협 없는 속도</span>
+        </div>
+        <div class="value-desc en">Lag kills momentum. We engineer systems that move as fast as your team does, without cutting corners on reliability.</div>
+        <div class="value-desc ko">지연은 모멘텀을 죽입니다. 우리는 신뢰성을 희생하지 않으면서 팀의 속도에 맞게 움직이는 시스템을 설계합니다.</div>
       </div>
       <div class="value-item">
-        <div class="value-title">Long-term partnership</div>
-        <div class="value-desc">Engagements are the beginning of a relationship, not a transaction. We measure success in years, not deliverables.</div>
+        <div class="value-title">
+          <span class="en-inline">Affordability at scale</span>
+          <span class="ko-inline">합리적인 가격, 엔터프라이즈 수준</span>
+        </div>
+        <div class="value-desc en">Enterprise tools shouldn't be locked behind enterprise budgets. We make powerful ERP accessible to growing organizations.</div>
+        <div class="value-desc ko">엔터프라이즈 도구가 대기업 예산 뒤에만 숨어 있어서는 안 됩니다. 우리는 성장하는 조직도 강력한 ERP를 사용할 수 있도록 만듭니다.</div>
       </div>
       <div class="value-item">
-        <div class="value-title">Informed independence</div>
-        <div class="value-desc">Our advice is not shaped by implementation revenue or affiliate interests. We say what we believe.</div>
+        <div class="value-title">
+          <span class="en-inline">Partners, not clients</span>
+          <span class="ko-inline">고객이 아닌 파트너</span>
+        </div>
+        <div class="value-desc en">We stay close to the teams we build for. Your growth is the measure of our work, not the delivery of a handoff document.</div>
+        <div class="value-desc ko">우리는 함께 만드는 팀 곁에 머뭅니다. 우리 일의 척도는 납품 문서가 아니라, 파트너의 성장입니다.</div>
       </div>
     </div>
   </div>
@@ -399,23 +510,39 @@
 
 <!-- SERVICES -->
 <section class="services" id="services">
-  <div class="section-label">What we do</div>
-  <h2>Three practices,<br>one integrated approach.</h2>
+  <div class="section-label">
+    <span class="en-inline">What we do</span>
+    <span class="ko-inline">우리가 하는 일</span>
+  </div>
+  <h2 class="en">Three ways we<br>build for you.</h2>
+  <h2 class="ko">세 가지 방식으로<br>함께 구축합니다.</h2>
   <div class="services-grid">
     <div class="service-card">
       <div class="service-num">01</div>
-      <div class="service-title">Corporate Strategy</div>
-      <div class="service-desc">Market entry analysis, competitive positioning, portfolio rationalization, and long-range planning for boards and executive teams.</div>
+      <div class="service-title">
+        <span class="en-inline">Bespoke ERP Development</span>
+        <span class="ko-inline">맞춤형 ERP 개발</span>
+      </div>
+      <div class="service-desc en">Custom-built ERP systems designed around your workflows, not the other way around. No bloated features you'll never use — just what your operation needs to run at its best.</div>
+      <div class="service-desc ko">귀사의 워크플로우에 맞게 설계된 맞춤형 ERP 시스템. 쓰지 않을 기능은 없습니다. 운영에 꼭 필요한 것만, 최적의 상태로 작동하도록 만듭니다.</div>
     </div>
     <div class="service-card">
       <div class="service-num">02</div>
-      <div class="service-title">Operational Excellence</div>
-      <div class="service-desc">Process redesign, supply chain optimization, performance systems, and organizational restructuring for measurable efficiency gains.</div>
+      <div class="service-title">
+        <span class="en-inline">Tailored Staff Interfaces</span>
+        <span class="ko-inline">직원 맞춤 인터페이스</span>
+      </div>
+      <div class="service-desc en">Interfaces built for the people who use them every day. Intuitive, role-specific, and designed to reduce friction so your team can focus on the work that matters.</div>
+      <div class="service-desc ko">매일 사용하는 사람을 위해 설계된 인터페이스. 직관적이고 역할에 최적화되어 있으며, 불필요한 마찰을 줄여 팀이 중요한 일에 집중할 수 있도록 합니다.</div>
     </div>
     <div class="service-card">
       <div class="service-num">03</div>
-      <div class="service-title">Technology Advisory</div>
-      <div class="service-desc">Digital transformation roadmaps, vendor selection, architecture review, and AI integration strategy grounded in business reality.</div>
+      <div class="service-title">
+        <span class="en-inline">Technical Support & Maintenance</span>
+        <span class="ko-inline">기술 지원 및 유지보수</span>
+      </div>
+      <div class="service-desc en">We don't disappear after launch. Ongoing support, system maintenance, and iterative improvements to keep your ERP running smoothly as your business evolves.</div>
+      <div class="service-desc ko">런칭 후에도 사라지지 않습니다. 지속적인 지원, 시스템 유지보수, 그리고 비즈니스가 성장함에 따라 ERP도 함께 발전할 수 있도록 반복적으로 개선합니다.</div>
     </div>
   </div>
 </section>
@@ -424,36 +551,32 @@
 
 <!-- TEAM -->
 <section id="team" style="background: var(--ink); padding-top: 5rem; padding-bottom: 6rem;">
-  <div style="padding: 0 0rem;">
-    <div class="section-label" style="color: rgba(255,255,255,0.3);">Our people</div>
-    <h2 style="color: #fff;">The partners<br>behind the work.</h2>
+  <div>
+    <div class="section-label" style="color: rgba(255,255,255,0.3);">
+      <span class="en-inline">Our people</span>
+      <span class="ko-inline">팀 소개</span>
+    </div>
+    <h2 class="en" style="color: #fff;">The team<br>behind the work.</h2>
+    <h2 class="ko" style="color: #fff;">AMI를 만드는<br>사람들.</h2>
     <div class="team-grid">
       <div class="team-card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
-        <div class="team-photo" style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2);">JK</div>
+        <div class="team-photo" style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2);">DL</div>
         <div class="team-info">
-          <div class="team-name" style="color: #fff;">Ji-ho Kang</div>
-          <div class="team-role" style="color: rgba(255,255,255,0.45);">Managing Partner</div>
+          <div class="team-name" style="color: #fff;">
+            <span class="en-inline">David Hoyool Lee</span>
+            <span class="ko-inline">이호율</span>
+          </div>
+          <div class="team-role" style="color: rgba(255,255,255,0.45);">CBO</div>
         </div>
       </div>
       <div class="team-card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
-        <div class="team-photo" style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2);">SW</div>
+        <div class="team-photo" style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2);">HC</div>
         <div class="team-info">
-          <div class="team-name" style="color: #fff;">Sarah Whitmore</div>
-          <div class="team-role" style="color: rgba(255,255,255,0.45);">Partner, Strategy</div>
-        </div>
-      </div>
-      <div class="team-card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
-        <div class="team-photo" style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2);">AN</div>
-        <div class="team-info">
-          <div class="team-name" style="color: #fff;">Aiko Nakamura</div>
-          <div class="team-role" style="color: rgba(255,255,255,0.45);">Partner, Operations</div>
-        </div>
-      </div>
-      <div class="team-card" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
-        <div class="team-photo" style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2);">RL</div>
-        <div class="team-info">
-          <div class="team-name" style="color: #fff;">Rafael Lima</div>
-          <div class="team-role" style="color: rgba(255,255,255,0.45);">Partner, Technology</div>
+          <div class="team-name" style="color: #fff;">
+            <span class="en-inline">Heejae Cho</span>
+            <span class="ko-inline">조희재</span>
+          </div>
+          <div class="team-role" style="color: rgba(255,255,255,0.45);">CTO</div>
         </div>
       </div>
     </div>
@@ -462,58 +585,118 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">Get in touch</div>
-  <h2>Let's talk about<br>what you're building.</h2>
+  <div class="section-label">
+    <span class="en-inline">Get in touch</span>
+    <span class="ko-inline">문의하기</span>
+  </div>
+  <h2 class="en">Let's build<br>something that works.</h2>
+  <h2 class="ko">제대로 작동하는<br>시스템, 함께 만들어요.</h2>
   <div class="contact-wrap">
     <div class="contact-info">
-      <p>Whether you're navigating a strategic inflection point or looking for a long-term advisory partner, we'd like to hear from you.</p>
+      <p class="en">Whether you're replacing an outdated system or building from scratch, we'd like to hear about what you're working with and where you want to go.</p>
+      <p class="ko">기존 시스템을 교체하거나 처음부터 구축하려는 경우, 현재 상황과 목표에 대해 들려주세요. 함께 방향을 찾겠습니다.</p>
       <div class="contact-detail">
         <div class="detail-row">
-          <span class="detail-key">HQ</span>
-          <span class="detail-val">Seoul, Republic of Korea</span>
+          <span class="detail-key">
+            <span class="en-inline">HQ</span>
+            <span class="ko-inline">본사</span>
+          </span>
+          <span class="detail-val">
+            <span class="en-inline">Yongin-si, Gyeonggi-do, Korea</span>
+            <span class="ko-inline">경기도 용인시</span>
+          </span>
         </div>
         <div class="detail-row">
-          <span class="detail-key">Office</span>
-          <span class="detail-val">London, Singapore</span>
+          <span class="detail-key">
+            <span class="en-inline">Email</span>
+            <span class="ko-inline">이메일</span>
+          </span>
+          <span class="detail-val">aimadeitwith@gmail.com</span>
         </div>
         <div class="detail-row">
-          <span class="detail-key">Email</span>
-          <span class="detail-val">hello@meridian-advisory.com</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-key">Phone</span>
-          <span class="detail-val">+82 2 1234 5678</span>
+          <span class="detail-key">
+            <span class="en-inline">Phone</span>
+            <span class="ko-inline">전화</span>
+          </span>
+          <span class="detail-val">+82-10-4080-4622</span>
         </div>
       </div>
     </div>
     <form class="contact-form" onsubmit="return false;">
       <div class="form-row">
         <div class="form-group">
-          <label>Name</label>
-          <input type="text" placeholder="Your name">
+          <label>
+            <span class="en-inline">Name</span>
+            <span class="ko-inline">이름</span>
+          </label>
+          <input type="text" id="ph-name">
         </div>
         <div class="form-group">
-          <label>Company</label>
-          <input type="text" placeholder="Your organization">
+          <label>
+            <span class="en-inline">Company</span>
+            <span class="ko-inline">회사명</span>
+          </label>
+          <input type="text" id="ph-company">
         </div>
       </div>
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="you@company.com">
+        <label>
+          <span class="en-inline">Email</span>
+          <span class="ko-inline">이메일</span>
+        </label>
+        <input type="email" id="ph-email">
       </div>
       <div class="form-group">
-        <label>Message</label>
-        <textarea rows="5" placeholder="Tell us what you're working on..."></textarea>
+        <label>
+          <span class="en-inline">Message</span>
+          <span class="ko-inline">문의 내용</span>
+        </label>
+        <textarea rows="5" id="ph-message"></textarea>
       </div>
-      <button type="submit" class="form-submit">Send message</button>
+      <button type="submit" class="form-submit">
+        <span class="en-inline">Send message</span>
+        <span class="ko-inline">메시지 보내기</span>
+      </button>
     </form>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">Meridian</div>
-  <div class="footer-text">© 2025 Meridian Advisory Group. All rights reserved.</div>
+  <div class="footer-logo">AMI SYSTEMS</div>
+  <div class="footer-text">
+    <span class="en-inline">© 2026 AMI SYSTEMS. All rights reserved.</span>
+    <span class="ko-inline">© 2026 AMI SYSTEMS. 모든 권리 보유.</span>
+  </div>
 </footer>
+
+<script>
+  const ph = {
+    en: { name: 'Your name', company: 'Your organization', email: 'you@company.com', message: 'Tell us about your current system and what you need...' },
+    ko: { name: '성함', company: '회사명', email: 'you@company.com', message: '현재 사용 중인 시스템과 필요한 것을 알려주세요...' }
+  };
+
+  function setLang(lang) {
+    document.body.classList.toggle('lang-ko', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    document.documentElement.lang = lang;
+
+    // Update stat-num for "Global"
+    document.querySelectorAll('.stat-num.en-inline').forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
+    document.querySelectorAll('.stat-num.ko-inline').forEach(el => el.style.display = lang === 'ko' ? 'block' : 'none');
+
+    // Form placeholders
+    document.getElementById('ph-name').placeholder = ph[lang].name;
+    document.getElementById('ph-company').placeholder = ph[lang].company;
+    document.getElementById('ph-email').placeholder = ph[lang].email;
+    document.getElementById('ph-message').placeholder = ph[lang].message;
+
+    localStorage.setItem('ami-lang', lang);
+  }
+
+  const saved = localStorage.getItem('ami-lang') || 'en';
+  setLang(saved);
+</script>
 
 </body>
 </html>

@@ -67,12 +67,17 @@
 
   /* LANG VISIBILITY */
   .ko { display: none; }
-  body.lang-ko .en { display: none; }
-  body.lang-ko .ko { display: block; }
-  body.lang-ko .ko-inline { display: inline; }
-  body.lang-ko .en-inline { display: none; }
   .ko-inline { display: none; }
   .en-inline { display: inline; }
+  ul.ko { display: none; }
+
+  body.lang-ko .en { display: none; }
+  body.lang-ko ul.en { display: none; }
+  body.lang-ko .ko { display: block; }
+  body.lang-ko ul.ko { display: flex; flex-direction: column; }
+  body.lang-ko .ko-inline { display: inline; }
+  body.lang-ko .en-inline { display: none; }
+  ul.en { display: flex; flex-direction: column; }
 
   /* Korean font overrides */
   body.lang-ko h1,
@@ -997,6 +1002,10 @@
     // Update stat-num for "Global"
     document.querySelectorAll('.stat-num.en-inline').forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
     document.querySelectorAll('.stat-num.ko-inline').forEach(el => el.style.display = lang === 'ko' ? 'block' : 'none');
+
+    // Explicitly control ul.en / ul.ko (CSS specificity workaround)
+    document.querySelectorAll('ul.en').forEach(el => el.style.display = lang === 'en' ? 'flex' : 'none');
+    document.querySelectorAll('ul.ko').forEach(el => el.style.display = lang === 'ko' ? 'flex' : 'none');
 
     // Form placeholders
     document.getElementById('ph-name').placeholder = ph[lang].name;

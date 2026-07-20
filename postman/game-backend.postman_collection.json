@@ -1,0 +1,175 @@
+{
+  "info": {
+    "name": "AMI Game Backend API",
+    "description": "게임 백엔드 API 컬렉션.\n\n사용 순서:\n1. 함께 제공된 environment(local.postman_environment.json)를 임포트하고 선택\n2. `npm start`로 서버 실행 (game-backend 폴더)\n3. Auth > Register 또는 Guest Login 실행 — 응답의 토큰이 자동으로 {{token}} 환경변수에 저장됨\n4. 이후 Saves / Leaderboard 요청들은 토큰을 자동으로 사용",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/health", "host": ["{{baseUrl}}"], "path": ["api", "health"] },
+            "description": "서버가 살아있는지 확인. 인증 불필요."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    pm.environment.set('token', pm.response.json().token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"player1\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/register", "host": ["{{baseUrl}}"], "path": ["api", "auth", "register"] },
+            "description": "회원가입. 성공 시 JWT 토큰이 {{token}}에 자동 저장됨."
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    pm.environment.set('token', pm.response.json().token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"player1\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api", "auth", "login"] },
+            "description": "로그인. 성공 시 JWT 토큰이 {{token}}에 자동 저장됨."
+          }
+        },
+        {
+          "name": "Guest Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    pm.environment.set('token', pm.response.json().token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/api/auth/guest", "host": ["{{baseUrl}}"], "path": ["api", "auth", "guest"] },
+            "description": "계정 없이 게스트 토큰 발급. 토큰이 {{token}}에 자동 저장됨."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Saves",
+      "item": [
+        {
+          "name": "Save Game (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"level\": 5,\n    \"gold\": 1200,\n    \"inventory\": [\"sword\", \"potion\"]\n  }\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/saves/main", "host": ["{{baseUrl}}"], "path": ["api", "saves", "main"] },
+            "description": "main 슬롯에 세이브 데이터 저장. data 안의 구조는 게임 마음대로."
+          }
+        },
+        {
+          "name": "Load Game (GET)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/saves/main", "host": ["{{baseUrl}}"], "path": ["api", "saves", "main"] },
+            "description": "main 슬롯 세이브 데이터 조회."
+          }
+        },
+        {
+          "name": "Delete Save",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/saves/main", "host": ["{{baseUrl}}"], "path": ["api", "saves", "main"] },
+            "description": "main 슬롯 세이브 삭제."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Leaderboard",
+      "item": [
+        {
+          "name": "Submit Score",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"score\": 9500\n}" },
+            "url": { "raw": "{{baseUrl}}/api/leaderboard", "host": ["{{baseUrl}}"], "path": ["api", "leaderboard"] },
+            "description": "점수 제출. 유저당 최고 기록만 유지됨."
+          }
+        },
+        {
+          "name": "Top Rankings",
+          "request": {
+            "method": "GET",
+            "auth": { "type": "noauth" },
+            "url": {
+              "raw": "{{baseUrl}}/api/leaderboard?limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "leaderboard"],
+              "query": [{ "key": "limit", "value": "10" }]
+            },
+            "description": "상위 랭킹 조회. 인증 불필요."
+          }
+        },
+        {
+          "name": "My Rank",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/leaderboard/me", "host": ["{{baseUrl}}"], "path": ["api", "leaderboard", "me"] },
+            "description": "내 순위와 최고 점수 조회."
+          }
+        }
+      ]
+    }
+  ]
+}
